@@ -9,7 +9,10 @@ Route::get('register', 'user@register');
 Route::post('login', 'user@index');
 Route::post('register', 'user@register');
 
-Route::get('profile', 'user@profile');
+Route::get('profile', array('before' => 'auth', function() {
+  return View::make('user.profile');
+}));
+
 Route::get('logout', 'user@logout');
 
 
